@@ -18,3 +18,5 @@ As well as the following notable helper tools:
 Together with the *sequential synchronization framework* and *local consistency check framework*, all these tools are utilized by INTEGRATE to form a synchronization tool kit. Fragments are used to compose a custom synchronization flow. INTEGRATE provides a set of predefined Fragments:
 
 * [Fragment Provider](10-fragment-provider.md)
+
+---
