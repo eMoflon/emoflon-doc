@@ -1,0 +1,3 @@
+# Conflict Detector
+
+TODO
