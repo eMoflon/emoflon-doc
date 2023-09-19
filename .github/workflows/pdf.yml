@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: integrate.pdf
-          path: doc/ibex/tgg/integrate-framework/integrate.pdf
+          path: doc/ibex/tgg/integrate-framework/integrate-framework.pdf
