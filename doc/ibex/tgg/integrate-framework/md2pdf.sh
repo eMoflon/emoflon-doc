@@ -10,5 +10,5 @@ for i in *.md;
 done
 
 # Compile the file
-pandoc -f markdown --lua-filter=hashids.lua -o test.pdf all.md
+pandoc -f markdown --lua-filter=hashids.lua -o integrate.pdf all.md
 rm all.md
