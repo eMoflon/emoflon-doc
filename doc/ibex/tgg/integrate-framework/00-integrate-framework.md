@@ -19,4 +19,6 @@ Together with the *sequential synchronization framework* and *local consistency 
 
 * [Fragment Provider](10-fragment-provider.md)
 
+**NOTE: We highly recommend to read the following research paper before diving into this documentation since most of the implementation is based on theoretical concepts explained there**: [Fritsche, Lars, et al. "A Precedence-Driven Approach for Concurrent Model Synchronization Scenarios using Triple Graph Grammars",  2020](https://doi.org/10.1145/3426425.3426931).
+
 ---

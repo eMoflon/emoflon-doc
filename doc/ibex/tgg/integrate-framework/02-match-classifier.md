@@ -2,12 +2,12 @@
 
 The `MatchClassifier` provides different information about model changes related to specific rule applications (which are usually addressed by their respective *consistency* matches) at a specific point of time. A classified match comprises the following information:
 
-* The status of a match (intact, broken, or implicitly broken)
-* The deletion pattern, which describes the grade of deletion (completely, partly, or unchanged) according to the domain and binding type
-* The deletion type, which classifies the match into one of several predefined types based on its deletion pattern
-* Filter NAC violations, which indicate that forbidden context appeared in whose presence a rule would not be applicable
-* Constrained attribute changes, which are attribute changes that violate an attribute condition
-* In-place attribute changes, which are attribute changes that violate an attribute assignment
+* The **status of a match** (intact, broken, or implicitly broken)
+* The **deletion pattern**, which describes the grade of deletion (completely, partly, or unchanged) according to the domain and binding type
+* The **deletion type**, which classifies the match into one of several predefined types based on its deletion pattern
+* **Filter NAC violations**, which indicate that forbidden context appeared in whose presence a rule would not be applicable
+* **Constrained attribute changes**, which are attribute changes that violate an attribute condition
+* **In-place attribute changes**, which are attribute changes that violate an attribute assignment
 
 ## Implementation
 

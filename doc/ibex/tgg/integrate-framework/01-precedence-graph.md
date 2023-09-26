@@ -1,6 +1,6 @@
 # Precedence Graph
 
-A precedence graph is a directed acyclic graph which (in its basic form) describes applied rules and their dependencies. A node represents a rule application. An edge between two nodes represents the dependency of a rule application from another rule application. When, additionally, model changes are considered, the nodes of a precedence graph can be annotated with information that help to identify e.g. repairable spots in the model or change conflicted areas. For more information about precedence graphs **we highly recommend to read the following paper**: [A Precedence-Driven Approach for Concurrent Model Synchronization Scenarios using Triple Graph Grammars](https://doi.org/10.1145/3426425.3426931). This also helps to follow the implementation details below.
+A precedence graph is a directed acyclic graph which (in its basic form) describes applied rules and their dependencies. A node represents a rule application. An edge between two nodes represents the dependency of a rule application from another rule application. When, additionally, model changes are considered, the nodes of a precedence graph can be annotated with information that help to identify e.g. repairable spots in the model or change conflicted areas (for more see [Fritsche, et al. (2020), Chapter 3 and 4.1](https://doi.org/10.1145/3426425.3426931)).
 
 ## Implementation
 
