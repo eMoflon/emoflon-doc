@@ -20,6 +20,7 @@ From an implementation point of view, conflicts can be further subcategorized ba
   * Correspondence preservation conflicts
   * Preserve-delete edge conflicts with need of repair
   * Attribute change conflicts
+  * Inconsistent domain changes conflicts
 
 ### *Source*/*target* match based detection
 
@@ -44,6 +45,8 @@ Correspondence preservation conflicts are detected by, first, analyzing deletion
 Conflicts with partly deleted domains involved indicate the need of repair after conflict resolution. The resolution of correspondence preservation conflicts provides this by default (see [Conflict Resolver](05-conflict-resolver.md)). But this does not hold for preserve-delete conflicts. Here, the rule application (respectively its match) needs to be explicitly specified to be repaired.
 
 To be repaired preserve-delete conflicts are detected next to correspondence preservation conflicts. Based on the analysis above, if only one domain has partly deleted elements or any filter NAC violations, then a possible to be repaired preserve-delete conflict could exist. To find them, another "detect preserve-delete edge conflict"-run is started. Additionally, if the elements of the other domain are fully deleted, a preserve-delete edge conflict can be directly reported. In both cases, the currently considered match serves as the to be repaired match.
+
+In case there were no conflicts found, though, we have to assume model changes that are inconsistent within its domain. An inconsistent domain changes conflict is then reported.
 
 ### Conflict Container
 
