@@ -21,10 +21,6 @@ From an implementation point of view, conflicts can be further subcategorized ba
   * Preserve-delete edge conflicts with need of repair
   * Attribute change conflicts
 
-### Conflict container
-
-TODO
-
 ### *Source*/*target* match based detection
 
 A preserve-delete conflict where newly added elements are involved typically have the following characteristics: There is a precedence node that belongs to a *source* or *target* match (called *source*/*target* node). This node (transitively) depends on another a precedence node that belongs to a broken *consistency* match (called broken *consistency* node). To find such a potential set-up, we have to traverse the precedence graph (see method `detectDeletePreserveConflicts()` in `ConflictDetector`). This is done by starting from all *source*/*target* nodes that do not have an element overlapping with other *consistency* nodes. With this, we ensure to only consider newly created elements and exclude matches for alternative rule applications.
@@ -47,4 +43,15 @@ Correspondence preservation conflicts are detected by, first, analyzing deletion
 
 Conflicts with partly deleted domains involved indicate the need of repair after conflict resolution. The resolution of correspondence preservation conflicts provides this by default (see [Conflict Resolver](05-conflict-resolver.md)). But this does not hold for preserve-delete conflicts. Here, the rule application (respectively its match) needs to be explicitly specified to be repaired.
 
-This is done, when 
+To be repaired preserve-delete conflicts are detected next to correspondence preservation conflicts. Based on the analysis above, if only one domain has partly deleted elements or any filter NAC violations, then a possible to be repaired preserve-delete conflict could exist. To find them, another "detect preserve-delete edge conflict"-run is started. Additionally, if the elements of the other domain are fully deleted, a preserve-delete edge conflict can be directly reported. In both cases, the currently considered match serves as the to be repaired match.
+
+### Conflict Container
+
+![Simplified Class Diagram](figures/conflict-container.drawio.svg)
+
+Detected conflicts are structured in containers. The purpose of these containers is to group and hierarchically order detected conflicts to prepare them for appropriate resolution. A `ConflictContainer` always refers to a match and contains all conflicts that are based on this match, which usually is the broken match involved in the conflict furthest from the precedence graph root.
+
+**Note:**
+The choice on which match a conflict is based mainly relies on practicability of implementation. Theoretically, a conflict does not have a base match (respectively rule application) but only a scope, which comprises multiple rule applications involved in the conflict. With a single match as base of a conflict, the implementation of a hierarchical ordering of conflicts is simplified. The match also serves a anchor point for conflict resolution.
+
+There is a preferred order in which conflicts should be resolved: Conflicts closer to the root of the precedence graph should be resolved first. To simplify the resolution, `ConflictContainer`s are hierarchically ordered according to the structure of the precedence graph. This means, conflicts of a super-container are closer to the root of the precedence graph then sub-containers and, therefore, should be resolved first. The `ConflictDetector` only returns a set of `ConflictContainers` (not hierarchically ordered). The ordering happens in the `ConflictHandler` in the `buildContainerHierarchy()`-method. Starting with the precedence node to the match of a container, the precedence graph is traversed through the `requiredBy`-references to find directly reachable containers (without jumping over a found container). This containers are then set as sub-containers.
