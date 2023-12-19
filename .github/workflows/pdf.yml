@@ -16,13 +16,13 @@ jobs:
     runs-on: [ubuntu-22.04]
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build PDF
         run: |
           cd doc/ibex/tgg/integrate-framework
           docker run --rm -v $PWD:/data maxkratz/pandoc-builder:latest ./md2pdf.sh
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: integrate.pdf
           path: doc/ibex/tgg/integrate-framework/integrate-framework.pdf
